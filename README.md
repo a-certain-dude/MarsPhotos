@@ -37,7 +37,4 @@ You should be familiar with:
 ### Setup Instructions
 
 1. [Install Android Studio](https://developer.android.com/studio) (latest version).
-2. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/mars-photos.git
+2. Clone the repository 
