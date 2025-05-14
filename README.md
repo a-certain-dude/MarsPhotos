@@ -1,38 +1,43 @@
-Mars Photos
-==================================
+# Mars Photos – Android Demo App
 
-Mars Photos app is a demo app that shows actual images of Mars' surface. These images are
-real-life photos from Mars captured by NASA's Mars rovers. The data is stored on a Web server
-as a REST web service.
+Mars Photos is a demo Android application that displays actual images of Mars captured by NASA’s rovers. The app consumes a RESTful web service to retrieve photo data and presents it in a scrollable grid layout using Jetpack Compose.
 
-This app demonstrated the use of [Retrofit](https://square.github.io/retrofit/) to make REST requests to the web service, [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) to
-handle the deserialization of the returned JSON to Kotlin data objects, and [Coil](https://coil-kt.github.io/coil/) to load images by URL.
+## ✨ Features
 
-Pre-requisites
---------------
+- Retrieves Mars photos from NASA’s open API.
+- Displays images in a lazy-loading grid.
+- Uses Kotlin coroutines for asynchronous operations.
+- Implements manual dependency injection.
+- Clean architecture with ViewModel and Repository pattern.
 
-You need to know:
-- How to create Composable functions.
-- How to use architecture components including ViewModel.
-- How to use coroutines for long-running tasks.
-- Familiarity with lazy grid
+## 🧰 Tech Stack
 
-Getting Started
----------------
+- **Language**: Kotlin
+- **UI Toolkit**: Jetpack Compose
+- **Network**: [Retrofit](https://square.github.io/retrofit/)
+- **Serialization**: [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
+- **Image Loading**: [Coil](https://coil-kt.github.io/coil/)
+- **Architecture Components**: ViewModel, Repository
+- **Build System**: Gradle
 
-1. [Install Android Studio](https://developer.android.com/studio/install.html), if you don't already
-   have it.
-2. Download the sample.
-3. Import the sample into Android Studio.
-4. Build and run the sample.
+## 📸 Screenshots
 
-## [Build this app through hands-on codelabs in the Android Basics with Compose Course](https://developer.android.com/courses/android-basics-compose/course)
+> *(Include screenshots here if available)*
 
-### [Get data from the internet](https://developer.android.com/codelabs/basic-android-kotlin-compose-getting-data-internet)
-Learn how to use community-developed libraries to connect to a web service to retrieve and display data in your Android Kotlin compose app. 
+## 🚀 Getting Started
 
-### [Add repository and Manual DI](https://developer.android.com/codelabs/basic-android-kotlin-compose-add-repository)
-Learn how to improve the architecture of the app by separating the network calls into a repository.
+### Prerequisites
 
-### [Load and display images from the internet](https://developer.android.com/codelabs/basic-android-kotlin-compose-load-images)
-Use the Coil library to load and display photos from the internet in your Android Compose app. 
+You should be familiar with:
+- Jetpack Compose & Composable functions
+- ViewModel and repository architecture
+- Coroutines for background tasks
+- LazyVerticalGrid / LazyColumn
+
+### Setup Instructions
+
+1. [Install Android Studio](https://developer.android.com/studio) (latest version).
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/mars-photos.git
