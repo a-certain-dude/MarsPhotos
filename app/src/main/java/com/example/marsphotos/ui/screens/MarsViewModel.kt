@@ -19,9 +19,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.marsphotos.MarsPhotosApplication
+import com.example.marsphotos.data.MarsPhotoRepository
 import com.example.marsphotos.data.NetworkMarsPhotosRepository
-import com.example.marsphotos.network.MarsApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -31,8 +36,9 @@ sealed interface MarsUiState {
     data object Error : MarsUiState
 }
 
-
-class MarsViewModel : ViewModel() {
+// dependency injection ---- marsPhotosRepository: MarsPhotoRepository
+// viewModel now depends on the repository
+class MarsViewModel(val marsPhotosRepository: MarsPhotoRepository) : ViewModel() {
     /** The mutable State that stores the status of the most recent request */
     var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
         private set
@@ -52,9 +58,7 @@ class MarsViewModel : ViewModel() {
     private fun getMarsPhotos() {
         viewModelScope.launch {
             try {
-                /* create an instance of the class, use it to access the method */
-                val netWorkRepository = NetworkMarsPhotosRepository()
-                val listResult = netWorkRepository.getPhotos()
+                val listResult = marsPhotosRepository.getMarsPhotos()
                 marsUiState = MarsUiState.Success("${listResult.size}")
             } catch (e: IOException) {
                 marsUiState = MarsUiState.Error
@@ -62,4 +66,14 @@ class MarsViewModel : ViewModel() {
         }
         
     }
+    /* adding repository to viewModel through factory since vMod doesn't allow value to be passed */
+    companion object{
+        val Factory : ViewModelProvider.Factory = viewModelFactory {
+        initializer { val application = (this[APPLICATION_KEY] as MarsPhotosApplication)
+        val marsPhotoRepository = application.container.marsPhotosRepository
+        MarsViewModel(marsPhotosRepository = marsPhotoRepository)}
+        
+        }
+    }
+    
 }

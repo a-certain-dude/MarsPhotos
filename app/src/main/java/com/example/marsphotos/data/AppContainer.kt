@@ -9,7 +9,7 @@ interface AppContainer {
     val marsPhotosRepository: MarsPhotoRepository
 }
 
-class DefaultContainer : AppContainer {
+class DefaultContainer() : AppContainer {
     
     private val BASE_URL =
         "https://android-kotlin-fun-mars-server.appspot.com"
@@ -19,7 +19,8 @@ class DefaultContainer : AppContainer {
         .baseUrl(BASE_URL)
         .build()
     
-    val retrofitService: MarsApiService by lazy { retrofit.create(MarsApiService::class.java) }
+    private val retrofitService: MarsApiService by lazy { retrofit.create(MarsApiService::class.java) }
     
+    override val marsPhotosRepository: MarsPhotoRepository by lazy { NetworkMarsPhotosRepository(retrofitService) }
     
 }
