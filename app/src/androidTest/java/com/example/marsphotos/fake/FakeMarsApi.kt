@@ -2,6 +2,7 @@ package com.example.marsphotos.fake
 
 import com.example.marsphotos.network.MarsApiService
 import com.example.marsphotos.network.MarsPhoto
+import org.junit.Test
 
 class FakeMarsApi : MarsApiService{
    /* using the getPhotos function to return the objects */

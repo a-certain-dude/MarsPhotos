@@ -6,13 +6,13 @@ import com.example.marsphotos.network.MarsPhoto
 interface MarsPhotoRepository {
    /*retrieve list of mars photos object
      it's called from a coroutine so must a be suspend since is a network request*/
-    
     suspend  fun getMarsPhotos(): List<MarsPhoto>
 }
 
+/* NetworkMarsPhotosRepository depends on MarsApiService interface by constructor injection
+* it's using the injected variable to access the independent class method getPhotos*/
 
 class NetworkMarsPhotosRepository( private val marsApiService: MarsApiService) : MarsPhotoRepository{
-    
     override suspend fun getMarsPhotos(): List<MarsPhoto> = marsApiService.getPhotos()
 }
 
