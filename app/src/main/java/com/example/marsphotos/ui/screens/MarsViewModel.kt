@@ -59,7 +59,9 @@ class MarsViewModel(val marsPhotosRepository: MarsPhotoRepository) : ViewModel()
         viewModelScope.launch {
             try {
                 val listResult = marsPhotosRepository.getMarsPhotos()
-                marsUiState = MarsUiState.Success("${listResult.size}")
+                
+                /* test failed because it the success message was different from the MarsViewModelTest */
+                marsUiState = MarsUiState.Success("Success: ${listResult.size}")
             } catch (e: IOException) {
                 marsUiState = MarsUiState.Error
             }

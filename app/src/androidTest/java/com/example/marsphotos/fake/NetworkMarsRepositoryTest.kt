@@ -1,5 +1,4 @@
 package com.example.marsphotos.fake
-import com.example.marsphotos.data.MarsPhotoRepository
 import com.example.marsphotos.data.NetworkMarsPhotosRepository
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -11,7 +10,7 @@ class NetworkMarsRepositoryTest {
     @Test
     fun networkMarsPhotosRepository_getMarsPhotos_verifyPhotoList() = runTest{
     val repositoryTest = NetworkMarsPhotosRepository(marsApiService = FakeMarsApi())
-    assertEquals(FakeDataSource.fakeData,repositoryTest.getMarsPhotos())
+    assertEquals(FakeDataSource.photoList,repositoryTest.getMarsPhotos())
     
     }
     
