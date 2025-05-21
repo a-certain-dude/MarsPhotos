@@ -57,24 +57,29 @@ class MarsViewModel(val marsPhotosRepository: MarsPhotoRepository) : ViewModel()
      */
     private fun getMarsPhotos() {
         viewModelScope.launch {
-            try {
-                val listResult = marsPhotosRepository.getMarsPhotos()
+            marsUiState = try {
+                
+                val result =
+                    marsPhotosRepository.getMarsPhotos()[0] /* to retrieve the first element */
                 
                 /* test failed because it the success message was different from the MarsViewModelTest */
-                marsUiState = MarsUiState.Success("Success: ${listResult.size}")
+                MarsUiState.Success("Success: ${result.id} ${result.imgSrc}")
             } catch (e: IOException) {
-                marsUiState = MarsUiState.Error
+                MarsUiState.Error
             }
         }
         
     }
+    
     /* adding repository to viewModel through factory since vMod doesn't allow value to be passed */
-    companion object{
-        val Factory : ViewModelProvider.Factory = viewModelFactory {
-        initializer { val application = (this[APPLICATION_KEY] as MarsPhotosApplication)
-        val marsPhotoRepository = application.container.marsPhotosRepository
-        MarsViewModel(marsPhotosRepository = marsPhotoRepository)}
-        
+    companion object {
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val application = (this[APPLICATION_KEY] as MarsPhotosApplication)
+                val marsPhotoRepository = application.container.marsPhotosRepository
+                MarsViewModel(marsPhotosRepository = marsPhotoRepository)
+            }
+            
         }
     }
     
