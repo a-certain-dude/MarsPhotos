@@ -68,6 +68,7 @@ fun MarsPhotoCard(photo: MarsPhoto, modifier: Modifier = Modifier) {
             .crossfade(true)
             .build(),
         contentDescription = stringResource(R.string.mars_photo),
+        contentScale = ContentScale.Crop,
         modifier = modifier.fillMaxWidth()
     )
     
