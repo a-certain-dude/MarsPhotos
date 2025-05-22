@@ -27,11 +27,12 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.marsphotos.MarsPhotosApplication
 import com.example.marsphotos.data.MarsPhotoRepository
 import com.example.marsphotos.data.NetworkMarsPhotosRepository
+import com.example.marsphotos.network.MarsPhoto
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface MarsUiState {
-    data class Success(val photos: String) : MarsUiState
+    data class Success(val photos: MarsPhoto) : MarsUiState
     data object Loading : MarsUiState
     data object Error : MarsUiState
 }
@@ -59,9 +60,9 @@ class MarsViewModel(val marsPhotosRepository: MarsPhotoRepository) : ViewModel()
         viewModelScope.launch {
             marsUiState = try {
                 
-                val result =
-                    marsPhotosRepository.getMarsPhotos()[0] /* to retrieve the first element */
-                
+               /*  val result =
+                    marsPhotosRepository.getMarsPhotos()[0]  *//* to retrieve the first element and save it in a variable*//*
+                 */
                 /* test failed because it the success message was different from the MarsViewModelTest */
                 MarsUiState.Success(marsPhotosRepository.getMarsPhotos()[0])
                 
