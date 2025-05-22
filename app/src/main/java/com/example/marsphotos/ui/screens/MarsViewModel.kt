@@ -63,7 +63,8 @@ class MarsViewModel(val marsPhotosRepository: MarsPhotoRepository) : ViewModel()
                     marsPhotosRepository.getMarsPhotos()[0] /* to retrieve the first element */
                 
                 /* test failed because it the success message was different from the MarsViewModelTest */
-                MarsUiState.Success("Success: ${result.id} ${result.imgSrc}")
+                MarsUiState.Success(marsPhotosRepository.getMarsPhotos()[0])
+                
             } catch (e: IOException) {
                 MarsUiState.Error
             }
