@@ -44,10 +44,7 @@ fun HomeScreen(
     when (marsUiState) {
         is MarsUiState.Loading -> LoadingScreen(modifier = Modifier.fillMaxSize())
         is MarsUiState.Success ->
-            ResultScreen(
-                marsUiState.photos,
-                modifier.padding(top = contentPadding.calculateTopPadding())
-            )
+            MarsPhotoCard(photo = marsUiState.photos,modifier = modifier)
         
         is MarsUiState.Error -> ErrorScreen(modifier = Modifier.fillMaxSize())
         
