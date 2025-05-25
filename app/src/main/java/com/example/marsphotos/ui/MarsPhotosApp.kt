@@ -64,6 +64,7 @@ fun MarsTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Modifier = 
 
 @Composable
 fun MarsPhotoCard(photo: MarsPhoto, modifier: Modifier = Modifier) {
+Card(modifier = modifier, elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)) {
     AsyncImage(
         model = ImageRequest.Builder(context = LocalContext.current)
             .data(photo.imgSrc)
