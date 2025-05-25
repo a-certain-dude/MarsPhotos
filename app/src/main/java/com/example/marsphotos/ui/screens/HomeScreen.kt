@@ -88,6 +88,22 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun PhotoGridScreen(
+        photo: List<MarsPhoto>,
+        modifier: Modifier = Modifier,
+        contentPadding: PaddingValues = PaddingValues(horizontal = 4.dp)
+) {
+    
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(150.dp),
+        modifier = modifier.padding(contentPadding)
+    ) {
+        items(items = photo, key = { photoId -> photoId.id }) {
+            MarsPhotoCard(it)
+        }
+    }
+}
 
 
 
