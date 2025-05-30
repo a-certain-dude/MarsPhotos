@@ -20,7 +20,7 @@ class MarsViewModelTest {
             )
             assertEquals(
                 /* test failed because it the success message was different from the MarsViewModel */
-                MarsUiState.Success("Success: ${FakeDataSource.photoList.size}"),
+                MarsUiState.Success(FakeDataSource.photoList),
                 marsViewModel.marsUiState
             )
         }
