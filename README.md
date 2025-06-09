@@ -23,6 +23,9 @@ Mars Photos is a demo Android application that displays actual images of Mars ca
 ## 📸 Screenshots
  ![Screenshot](MarsPhotos
 /loaded.png)
+
+<img src="MarsPhotos
+/loaded.png" width="300" />
 ## 🚀 Getting Started
 
 ### Prerequisites
